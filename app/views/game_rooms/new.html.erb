@@ -1,0 +1,7 @@
+<%= form_for @game_room do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit :Submit %>
+<% end %>
+<%= link_to 'Return', game_rooms_path %>
