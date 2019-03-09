@@ -4,27 +4,31 @@ RSpec.describe 'Game Rooms', :type => :request do
   let(:game_room) {create(:game_room)}
   let(:game_room1) {create(:game_room1)}
   let(:unsaved_game_room) {build(:game_room)}
+  let(:word) {create(:word)}
+
+  before(:each) do
+    word
+  end
 
   describe 'GET' do
     describe 'index' do
       it "should get all game rooms" do
         game_room; game_room1
-        get '/'
+        get game_rooms_path
         expect(assigns(:game_rooms)).to eq([game_room, game_room1])
       end
     end
 
     describe 'show' do
       it "should get specific game room" do
-        game_room
-        get "/game_rooms/#{game_room.slug}"
+        get game_room_path(game_room)
         expect(assigns(:game_room)).to eq(game_room)
       end
     end
 
     describe 'new' do
       it "should get new game room" do
-        get "/game_rooms/new"
+        get new_game_room_path
         expect(assigns(:game_room)).to be_a_new(GameRoom)
       end
     end
@@ -33,12 +37,12 @@ RSpec.describe 'Game Rooms', :type => :request do
   describe 'POST' do
     describe 'create' do
       it "should create a new game room when valid" do
-      expect{post '/game_rooms', params: {game_room: attributes_for(:game_room)}}.
+      expect{post game_rooms_path, params: {game_room: attributes_for(:game_room)}}.
       to change(GameRoom, :count).by(1)
       end
 
       it "should not create anything when invalid" do
-        expect{post '/game_rooms',
+        expect{post game_rooms_path,
           params: {game_room: attributes_for(:game_room, name: " ")}}.
         not_to change(GameRoom, :count)
       end
@@ -55,7 +59,7 @@ RSpec.describe 'Game Rooms', :type => :request do
     describe 'destroy' do
       it "should delete game room" do
         game_room
-        expect{ delete "/game_rooms/#{game_room.slug}" }.
+        expect{ delete game_room_path(game_room) }.
           to change(GameRoom, :count).by(-1)
       end
     end
