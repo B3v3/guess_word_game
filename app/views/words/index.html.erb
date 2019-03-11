@@ -1,5 +1,6 @@
-<%= link_to "New Word", new_word_path %>
+<div class="jumbotron text-center">
+  <%= link_to "Create new Word", new_word_path,
+                                 class: 'btn btn-info btn-lg btn-block' %>
 
-<% @words.each do |word| %>
-  <p> <%= word.name %></p>
-<% end %>
+  <%= render @words if @words.any? %>
+</div>

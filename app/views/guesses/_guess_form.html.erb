@@ -1,0 +1,6 @@
+<%= form_for [@game_room, Guess.new] do |f| %>
+    <%= f.label 'New guess:' %>
+    <%= f.text_field :text %>
+
+  <%= f.submit :Submit, class: 'btn btn-success ' %>
+<% end %>

@@ -1,0 +1,16 @@
+<%= form_for @word do |f| %>
+  <% if @word.errors.any? %>
+    <% @word.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger" role="alert">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <%= f.submit :Submit, class: 'btn btn-success btn-lg btn-block' %>
+<% end %>

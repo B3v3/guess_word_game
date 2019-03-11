@@ -1,5 +1,16 @@
-<%= link_to "Create new Room", new_game_room_path %>
+<div class="jumbotron text-center">
+  <%= link_to "Create new Word", new_word_path,
+                                 class: 'btn btn-info btn-lg btn-block' %>
+  <%= link_to 'All words', words_path,
+                           class: 'btn btn-info btn-lg btn-block' %>
 
-<% @game_rooms.each do |room| %>
-  <p><%= link_to room.name, room %></p>
-<% end %>
+  <%= link_to "Create new Room", new_game_room_path,
+                                 class: 'btn btn-info btn-lg btn-block' %>
+
+  <% if @game_rooms.any? %>
+      <h2> Game Rooms: </h2>
+      <%= render @game_rooms %>
+  <% else %>
+    <h2> Nothing to show here </h2>
+  <% end %>
+</div>

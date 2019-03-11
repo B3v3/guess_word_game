@@ -1,19 +1,13 @@
-<h1> <%= @game_room.name %> <%= "[CLOSED]" if @game_room.won? %></h1>
+<div class="jumbotron">
+  <div class='text-center'>
+    <h1> <%= @game_room.full_name %></h1>
+    <p> <%= @game_room.description %></p>
+  </div>
 
-<p> <%= @game_room.description %></p>
+  <h2> Guesses: </h2>
+  <%= render 'guesses/guess_form' %>
 
-<h2> Guesses: </h2>
-<%= form_for [@game_room, Guess.new] do |f| %>
-  <%= f.label :text %>
-  <%= f.text_field :text %>
+  <%= render @guesses if @guesses.any? %>
 
-  <%= f.submit :Submit %>
-<% end %>
-
-<% if @guesses.any? %>
-  <% @guesses.each do |guess| %>
-    <p> <%= guess.text %> </p>
-  <% end %>
-<% end %>
-
-<%= link_to 'Return', game_rooms_path %>
+  <%= link_to 'Return', game_rooms_path, class: 'btn btn-info btn-lg btn-block' %>
+<div>

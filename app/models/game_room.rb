@@ -21,8 +21,12 @@ class GameRoom < ApplicationRecord
     self.status == 1
   end
 
+  def full_name
+    self.name + "#{' [CLOSED]' if self.won?}"
+  end
+
   protected
     def get_random_word
-      self.word_id = Word.ids.sample if self.new_record?
+      self.word_id = Word.ids.sample if self.word_id.nil?
     end
 end
