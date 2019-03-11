@@ -37,8 +37,8 @@ RSpec.describe 'Game Rooms', :type => :request do
   describe 'POST' do
     describe 'create' do
       it "should create a new game room when valid" do
-      expect{post game_rooms_path, params: {game_room: attributes_for(:game_room)}}.
-      to change(GameRoom, :count).by(1)
+        expect{post game_rooms_path, params: {game_room: attributes_for(:game_room)}}.
+        to change(GameRoom, :count).by(1)
       end
 
       it "should not create anything when invalid" do
@@ -49,18 +49,12 @@ RSpec.describe 'Game Rooms', :type => :request do
     end
   end
 
-  describe 'PUT' do
-    describe 'update' do
-      pending "STATUS CHANGES"
-    end
-  end
-
   describe 'DELETE' do
     describe 'destroy' do
       it "should delete game room" do
         game_room
         expect{ delete game_room_path(game_room) }.
-          to change(GameRoom, :count).by(-1)
+        to change(GameRoom, :count).by(-1)
       end
     end
   end

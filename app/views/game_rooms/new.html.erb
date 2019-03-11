@@ -2,6 +2,12 @@
   <%= f.label :name %>
   <%= f.text_field :name %>
 
+  <p> <%= @game_room.word.name %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
+  <%= hidden_field_tag :word_id, @game_room.word_id %>
+
   <%= f.submit :Submit %>
 <% end %>
 <%= link_to 'Return', game_rooms_path %>

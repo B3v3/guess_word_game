@@ -1,2 +1,19 @@
-<h1> <%= @game_room.name %> </h1>
+<h1> <%= @game_room.name %> <%= "[CLOSED]" if @game_room.won? %></h1>
+
+<p> <%= @game_room.description %></p>
+
+<h2> Guesses: </h2>
+<%= form_for [@game_room, Guess.new] do |f| %>
+  <%= f.label :text %>
+  <%= f.text_field :text %>
+
+  <%= f.submit :Submit %>
+<% end %>
+
+<% if @guesses.any? %>
+  <% @guesses.each do |guess| %>
+    <p> <%= guess.text %> </p>
+  <% end %>
+<% end %>
+
 <%= link_to 'Return', game_rooms_path %>

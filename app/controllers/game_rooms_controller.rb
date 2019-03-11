@@ -5,6 +5,7 @@ class GameRoomsController < ApplicationController
 
   def show
     @game_room = GameRoom.friendly.find(params[:id])
+    @guesses = @game_room.guesses
   end
 
   def new
@@ -34,6 +35,6 @@ class GameRoomsController < ApplicationController
 
   private
   def game_room_params
-    params.require(:game_room).permit(:name)
+    params.require(:game_room).permit(:name, :description, :word_id)
   end
 end
