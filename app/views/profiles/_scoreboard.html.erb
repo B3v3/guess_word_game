@@ -1,0 +1,3 @@
+<% @users.each do |user| %>
+  <p><%= link_to "#{user.name} - #{user.score} points", profile_path(user) %></p>
+<% end %>

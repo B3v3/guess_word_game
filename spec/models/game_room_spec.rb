@@ -5,9 +5,12 @@ RSpec.describe GameRoom, type: :model do
   let(:saved_room) {create(:game_room)}
   let(:saved_won_room) {create(:game_room, status: 1)}
   let(:word) {create(:word)}
+  let(:user) { create(:user)}
+  let(:user1) { create(:user1)}
+
 
 before(:each) do
-  word
+  user; word
 end
 
   describe 'validations' do
@@ -67,8 +70,33 @@ end
 
   describe '.end_game' do
     it "changes status to 1" do
-      saved_room.end_game
+      saved_room.end_game(user)
       expect(saved_room.status).to eq(1)
+    end
+
+    it "raises the score of creator and winner" do
+      user
+      saved_room.end_game(user1)
+      user1.reload; user.reload
+      expect(user1.score).to eq(10)
+      expect(user.score).to eq(10)
+    end
+
+    it "set user as winner" do
+      user
+      saved_room.end_game(user1)
+      saved_room.reload
+      expect(saved_room.winner).to eq(user1)
+    end
+  end
+
+  describe 'full_name' do
+    it "returns only name if game is not won" do
+      expect(saved_room.full_name).to eq(saved_room.name)
+    end
+
+    it "returns name + [CLOSED] if game is won" do
+      expect(saved_won_room.full_name).to eq(saved_room.name + " [CLOSED]")
     end
   end
 end

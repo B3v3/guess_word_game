@@ -5,9 +5,14 @@
   </div>
 
   <h2> Guesses: </h2>
-  <%= render 'guesses/guess_form' %>
+  <%= render 'guesses/guess_form' if
+     valid_for_guessing?(@game_room) %>
 
-  <%= render @guesses if @guesses.any? %>
+  <% if @guesses.any? %>
+    <%= render @guesses  %>
+  <% else %>
+    <p> Nothing yet, mate!</p>
+  <% end %>
 
   <%= link_to 'Return', game_rooms_path, class: 'btn btn-info btn-lg btn-block' %>
 <div>

@@ -4,9 +4,10 @@ RSpec.describe Guess, type: :model do
   let(:game_room) {create(:game_room)}
   let(:word)      {create(:word)}
   let(:guess)     {build(:guess)}
+  let(:user) { create(:user)}
 
   before(:each) do
-    word; game_room
+    user; word; game_room
   end
 
   describe 'validations' do

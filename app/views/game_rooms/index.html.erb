@@ -1,11 +1,9 @@
 <div class="jumbotron text-center">
-  <%= link_to "Create new Word", new_word_path,
-                                 class: 'btn btn-info btn-lg btn-block' %>
-  <%= link_to 'All words', words_path,
-                           class: 'btn btn-info btn-lg btn-block' %>
-
-  <%= link_to "Create new Room", new_game_room_path,
-                                 class: 'btn btn-info btn-lg btn-block' %>
+  <% if user_signed_in? %>
+    <%= render 'word_links' %>
+    <%= link_to "Create new Room", new_game_room_path,
+                                   class: 'btn btn-info btn-lg btn-block' %>
+  <% end %>
 
   <% if @game_rooms.any? %>
       <h2> Game Rooms: </h2>

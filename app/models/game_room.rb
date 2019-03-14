@@ -5,6 +5,9 @@ class GameRoom < ApplicationRecord
   after_initialize :get_random_word
 
   belongs_to :word
+  belongs_to :user
+
+  belongs_to :winner, class_name: 'User', foreign_key: 'winner_id', optional: true
   has_many :guesses,    dependent: :destroy
 
   default_scope { order(status: 'ASC') }
@@ -13,8 +16,9 @@ class GameRoom < ApplicationRecord
   validates :description, presence: true, length: { minimum: 3, maximum: 256}
   validates :status, presence: true
 
-  def end_game
-    self.update_columns(status: 1)
+  def end_game(winner)
+    self.update_columns(status: 1, winner_id: winner.id)
+    self.user.reward; winner.reward
   end
 
   def won?

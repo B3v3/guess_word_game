@@ -1,4 +1,6 @@
 class GameRoomsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  
   def index
     @game_rooms = GameRoom.all
   end
@@ -13,7 +15,7 @@ class GameRoomsController < ApplicationController
   end
 
   def create
-    @game_room = GameRoom.new(game_room_params)
+    @game_room = current_user.game_rooms.build(game_room_params)
     if @game_room.save
       redirect_to @game_room
     else
