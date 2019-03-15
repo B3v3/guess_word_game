@@ -12,7 +12,7 @@ class GameRoom < ApplicationRecord
 
   default_scope { order(status: 'ASC') }
 
-  validates :name, presence: true, length: { minimum: 3, maximum: 64}
+  validates :name, presence: true, length: { minimum: 6, maximum: 64}
   validates :description, presence: true, length: { minimum: 3, maximum: 256}
   validates :status, presence: true
 

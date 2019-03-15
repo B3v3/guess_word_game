@@ -24,8 +24,8 @@ end
         expect(game_room).to be_invalid
       end
 
-      it "should be longer than 2 characters" do
-        game_room.name = "aa"
+      it "should be longer than 5 characters" do
+        game_room.name = "aaaaa"
         expect(game_room).to be_invalid
       end
 
