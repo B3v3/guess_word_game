@@ -8,11 +8,11 @@ class GuessesController < ApplicationController
     @guess.user = current_user
     if @guess.save
       if @guess.text.downcase == @game_room.word.name
-        flash[:success] = "You won!"
+        flash[:notice] = "You won!"
         @game_room.end_game(current_user)
         redirect_to root_path
       else
-        flash[:danger] = 'Try again!'
+        flash[:alert] = 'Try again!'
         redirect_to @game_room
       end
     end

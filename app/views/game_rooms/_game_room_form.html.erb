@@ -19,7 +19,7 @@
     <%= f.text_field :description, class: 'form-control' %>
   </div>
 
-  <%= hidden_field_tag :word_id, @game_room.word_id %>
+  <%= hidden_field(:game_room, :word_id, value: @game_room.word_id) %>
 
   <%= f.submit :Submit, class: 'btn btn-success btn-lg btn-block' %>
 <% end %>

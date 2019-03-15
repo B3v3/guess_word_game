@@ -1,0 +1,6 @@
+<p> Won games: </p>
+<ul class="list-group">
+  <% @won_games.each do |game| %>
+    <li class="list-group-item text-center"><%= link_to game.name, game %></li>
+  <% end %>
+</ul>

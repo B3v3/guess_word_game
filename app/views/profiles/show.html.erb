@@ -2,12 +2,6 @@
   <h2 class='text-center'> <%= @user.name %> profile!</h2>
     <h3> Number of created games: <%= @game_rooms_created.count %> </h3>
     <h3> Number of games won: <%= @won_games.count %></h3>
-    <% if @won_games.any? %>
-      <p> Won games: </p>
-      <ul>
-        <% @won_games.each do |game| %>
-          <li><%= link_to game.name, game %></li>
-        <% end %>
-      </ul>
-    <% end %>
+
+    <%= render 'won_games' if @won_games.any? %>
 </div>

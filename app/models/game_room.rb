@@ -30,7 +30,7 @@ class GameRoom < ApplicationRecord
   end
 
   protected
-    def get_random_word
-      self.word_id = Word.ids.sample if self.word_id.nil?
-    end
+  def get_random_word
+    self.word_id = Word.ids.sample if self.word_id.nil?
+  end
 end

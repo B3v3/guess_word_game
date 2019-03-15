@@ -1,3 +1,7 @@
+<ul class="list-group">
 <% @users.each do |user| %>
-  <p><%= link_to "#{user.name} - #{user.score} points", profile_path(user) %></p>
+  <li class="list-group-item text-center">
+    <%= link_to "#{user.name} - #{user.score} points", profile_path(user) %>
+  </li>
 <% end %>
+</ul>

@@ -1,6 +1,6 @@
 class GameRoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  
+
   def index
     @game_rooms = GameRoom.all
   end
@@ -11,6 +11,7 @@ class GameRoomsController < ApplicationController
   end
 
   def new
+    @word = Word.find(Word.ids.sample)
     @game_room = GameRoom.new
   end
 
