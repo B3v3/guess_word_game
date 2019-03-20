@@ -7,14 +7,8 @@ class GuessesController < ApplicationController
     @guess = @game_room.guesses.build(guess_params)
     @guess.user = current_user
     if @guess.save
-      if @guess.text.downcase == @game_room.word.name
-        flash[:notice] = "You won!"
-        @game_room.end_game(current_user)
-        redirect_to root_path
-      else
-        flash[:alert] = 'Try again!'
+        flash[:notice] = winning_message
         redirect_to @game_room
-      end
     end
   end
 
@@ -29,5 +23,9 @@ class GuessesController < ApplicationController
 
   def check_if_game_room_master
     redirect_to @game_room if @game_room.user == current_user
+  end
+
+  def winning_message
+    @guess.check_if_same ? 'You won!' : 'Try again!'
   end
 end

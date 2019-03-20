@@ -45,4 +45,16 @@ RSpec.describe Guess, type: :model do
       expect(guess.game_room).to eq(game_room)
     end
   end
+
+  describe 'check_if_same' do
+    it "returns true if guess is same as word" do
+      guess.text = guess.game_room.word.name
+      expect(guess.check_if_same).to be_truthy
+    end
+
+    it "returns false if guess is not same as word" do
+      guess.text = "aaaaaaaaaaa"
+      expect(guess.check_if_same).to be_falsey
+    end
+  end
 end
