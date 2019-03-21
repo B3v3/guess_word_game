@@ -1,4 +1,5 @@
 <p> Won games: </p>
+<%= paginate @won_games %>
 <ul class="list-group">
   <% @won_games.each do |game| %>
     <li class="list-group-item text-center"><%= link_to game.name, game %></li>

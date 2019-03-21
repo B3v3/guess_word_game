@@ -1,13 +1,13 @@
 class GameRoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-
+  before_action :find_game_room, except: [:new, :create, :index]
+  
   def index
-    @game_rooms = GameRoom.all
+    @game_rooms = GameRoom.all.page params[:page]
   end
 
   def show
-    @game_room = GameRoom.friendly.find(params[:id])
-    @guesses = @game_room.guesses
+    @guesses = @game_room.guesses.page params[:page]
   end
 
   def new
@@ -25,18 +25,20 @@ class GameRoomsController < ApplicationController
   end
 
   def update
-    @game_room = GameRoom.friendly.find(params[:id])
     @game_room.update(game_room_params)
     redirect_to @game_room
   end
 
   def destroy
-    game_room = GameRoom.friendly.find(params[:id])
-    game_room.delete
+    @game_room.delete
     redirect_to game_rooms_path
   end
 
   private
+  def find_game_room
+    @game_room = GameRoom.friendly.find(params[:id])
+  end
+
   def game_room_params
     params.require(:game_room).permit(:name, :description, :word_id)
   end

@@ -9,6 +9,7 @@
      valid_for_guessing?(@game_room) %>
 
   <% if @guesses.any? %>
+    <%= paginate @guesses %>
     <%= render @guesses  %>
   <% else %>
     <p> Nothing yet, mate!</p>

@@ -6,8 +6,10 @@
   <% end %>
 
   <% if @game_rooms.any? %>
-      <h2> Game Rooms: </h2>
-      <%= render @game_rooms %>
+      <%= paginate @game_rooms %>
+        <h2> Game Rooms: </h2>
+        <%= render @game_rooms %>
+      <%= paginate @game_rooms %>
   <% else %>
     <h2> Nothing to show here </h2>
   <% end %>
